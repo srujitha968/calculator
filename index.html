@@ -86,8 +86,12 @@
             a.value = a.value + val
         }
         function eq() {
-            let b = eval(a.value)
-            a.value = b
+            if( a.value!=""){
+            a.value = eval(a.value)
+            }
+            else{
+                return;
+            }
         }
         function ba(){
             a.value=a.value.slice(0,-1)
