@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
             background-color: rgb(61, 61, 61);
             border-radius: 10px;
         }
+
         #sc {
             border: none;
             height: 40px;
@@ -24,8 +26,9 @@
             font-size: larger;
             font-weight: bolder;
             text-align: right;
-            color:black;
+            color: black;
         }
+
         button {
             cursor: pointer;
             width: 70px;
@@ -36,46 +39,54 @@
             font-size: larger;
             background-color: white;
         }
-        #co{ 
-            font-size: xx-large;}
+
+        #co {
+            font-size: xx-large;
+        }
+
         #con {
             display: grid;
             grid-template-columns: auto auto auto auto;
             justify-content: space-around;
             row-gap: 6px;
         }
-        .co{ background-color: rgb(226, 224, 224);}
-        .c{
+
+        .co {
+            background-color: rgb(226, 224, 224);
+        }
+
+        .c {
             background-image: url(./b.webp);
-            background-size: cover; 
+            background-size: cover;
             background-position: center;
             background-size: 60%;
             background-repeat: no-repeat;
         }
     </style>
 </head>
+
 <body>
     <center>
         <main>
             <h1 style="color: white; margin-bottom: 10px; padding-top: 8px;">Calculator</h1>
-            <input type="tel" id="sc" disabled ><br>
+            <input type="tel" id="sc" disabled><br>
             <div id="con">
-                <button onclick="window.location='index.html'" id="co">ac</button>
-                <button onclick="addop('%')" id="co">%</button>
+                <button onclick="window.location='index.html'" id="co">Ac</button>
+                <button onclick="sym('%')" id="co">%</button>
                 <button onclick="ba()" id="co" class="c"></button>
-                <button onclick="addop('/')" id="co">/</button>
+                <button onclick="sym('/')" id="co">/</button>
                 <button onclick="sa(1)" class="co">1</button>
                 <button onclick="sa(2)" class="co">2</button>
                 <button onclick="sa(3)" class="co">3</button>
-                <button onclick="addop('+')" id="co">+</button>
+                <button onclick="sym('+')" id="co">+</button>
                 <button onclick="sa(4)" class="co">4</button>
                 <button onclick="sa(5)" class="co">5</button>
                 <button onclick="sa(6)" class="co">6</button>
-                <button onclick="addop('-')" id="co">-</button>
+                <button onclick="sym('-')" id="co">-</button>
                 <button onclick="sa(7)" class="co">7</button>
                 <button onclick="sa(8)" class="co">8</button>
                 <button onclick="sa(9)" class="co">9</button>
-                <button onclick="addop('*')" id="co">*</button>
+                <button onclick="sym('*')" id="co">*</button>
                 <button onclick="sa('00')" class="co">00</button>
                 <button onclick="sa(0)" class="co">0</button>
                 <button onclick="sa('.')" class="co">.</button>
@@ -84,32 +95,36 @@
         </main>
     </center>
     <script>
+        var d = 0
         const a = document.getElementById("sc")
         function sa(val) {
             a.value = a.value + val
+            val = d;
         }
-        
-        function addop(val){
-            if(a.value==""){
+        function sym(op) {
+            if (a.value == "") {
                 return;
             }
-            else{
-                a.value=a.value+val
+            else {
+                if (d !== '+' && d !== '-' && d !== '*' && d !== '/' && d !== '%') {
+                    a.value = a.value + op;
+                    d=op;
+                }
+                else {
+                    a.value = a.value.slice(0, -1);
+                    a.value = a.value + op;
+                    d=op;
+                }
             }
         }
-        
         function eq() {
-            if( a.value!==""){
-            a.value = eval(a.value)
-            }
-            else{
-                return;
-            }
+            let b = eval(a.value)
+            a.value = b
         }
-        
-        function ba(){
-            a.value=a.value.slice(0,-1)
+        function ba() {
+            a.value = a.value.slice(0, -1)
         }
     </script>
 </body>
+
 </html>
