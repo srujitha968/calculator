@@ -70,11 +70,11 @@
     <center>
         <main>
             <h1 style="color: white; margin-bottom: 10px; padding-top: 8px;">Calculator</h1>
-            <input type="tel" id="sc" disabled><br>
+            <input type="tel" id="sc" disabled placeholder="0"><br>
             <div id="con">
                 <button onclick="window.location='index.html'" id="co">Ac</button>
                 <button onclick="sym('%')" id="co">%</button>
-                <button onclick="ba()" id="co" class="c"></button>
+                <button onclick="back()" id="co" class="c"></button>
                 <button onclick="sym('/')" id="co">/</button>
                 <button onclick="sa(1)" class="co">1</button>
                 <button onclick="sa(2)" class="co">2</button>
@@ -100,7 +100,7 @@
         const a = document.getElementById("sc")
         function sa(val) {
             a.value = a.value + val
-            val = d;
+            d=a.value
         }
         function sym(op) {
             if (a.value == "") {
@@ -112,17 +112,21 @@
                     d=op;
                 }
                 else {
-                    a.value = a.value.slice(0, -1);
-                    a.value = a.value + op;
+                    a.value = a.value.slice(0, -1) + op;
                     d=op;
                 }
             }
         }
+
         function eq() {
-            let b = eval(a.value)
-            a.value = b
+            if (a.value!==""){
+                a.value =eval(a.value)
+            }
+            else{
+                return;
+            }
         }
-        function ba() {
+        function back() {
             a.value = a.value.slice(0, -1)
         }
     </script>
